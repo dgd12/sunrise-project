@@ -1,10 +1,49 @@
 #include<stdio.h>
+#include<Windows.h>
+int Choose(int choose)
+{
 
+	switch(choose)
+	{
+	case 1:
+		system("cls");
+		printf("21341");
+		break;
+	case 2:
+		system("cls");
+		printf("f231");
+		break;
+	case 3:
+		system("cls");
+		printf("124");
+		break;
+	default:
+		system("cls");
+		printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
+	    printf("\n\n\n                                  1. 시작하기\n");
+	    printf("                                  2. 설명보기\n");
+		printf("                                  3. 끝내기\n  다시 입력해주세요.");
+		scanf("%d", &choose);
+		Choose(choose);
+		
+
+	}
+	
+}
 int main(void)
 {
+	int choose;
 	printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
 	printf("\n\n\n                                  1. 시작하기\n");
 	printf("                                  2. 설명보기\n");
 	printf("                                  3. 끝내기\n");
+
+	scanf("%d", &choose);
+	Choose(choose);
+
+	
+	
 	return 0;
 }
+		
+	
