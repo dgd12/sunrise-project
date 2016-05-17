@@ -2,12 +2,29 @@
 #include<Windows.h>
 int Choose(int choose)
 {
+	char a;
+	int count=0;
 
 	switch(choose)
 	{
 	case 1:
 		system("cls");
-		printf("21341");
+		printf("                   스페이스바를 클릭을하여 돈을 벌어주세요 \n");
+		
+	    for(a=0;a<=2000000000; a++)
+		{
+			scanf("%c", &a);
+			{
+			if(a==32)
+				count++;
+		}
+			printf("%d",count-1);
+				
+			
+		}
+			
+			
+			
 		break;
 	case 2:
 		system("cls");
@@ -28,6 +45,7 @@ int Choose(int choose)
 		
 
 	}
+	return choose;
 	
 }
 int main(void)
@@ -45,5 +63,6 @@ int main(void)
 	
 	return 0;
 }
+		
 		
 	
