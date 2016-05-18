@@ -26,8 +26,6 @@ int Choose(int choose)
 			printf("\n %50d. 저장", b+1);
 			printf("\n\n %50d. 끝내기", b+2);
 		}
-		if(a==114)
-			Store(a);
 	case 2:
 		system("cls");
 		printf("\n          스페이스바를 눌러서 돈을 벌어 상점에서 아이템을 구입해 돈을 모아보세요.\n\n                    돌아가려면 r키를 눌러주세요.");
