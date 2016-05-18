@@ -3,7 +3,9 @@
 int Choose(int choose)
 {
 	char a;
+	int b=1;
 	int count=0;
+	char c;
 
 	switch(choose)
 	{
@@ -13,39 +15,45 @@ int Choose(int choose)
 		
 	    for(a=0;a<=2000000000; a++)
 		{
-			scanf("%c", &a);
+			a = getch();
 			{
 			if(a==32)
 				count++;
+			system("cls");
 		}
-			printf("%d",count-1);
-				
-			
+			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n %35d 원",count-1);
+			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n %50d. 상점", b);
+			printf("\n %50d. 저장", b+1);
+			printf("\n\n %50d. 끝내기", b+2);
 		}
-			
-			
-			
-		break;
+		if(a==114)
+			Store(a);
 	case 2:
 		system("cls");
-		printf("f231");
-		break;
+		printf("\n          스페이스바를 눌러서 돈을 벌어 상점에서 아이템을 구입해 돈을 모아보세요.\n\n                    돌아가려면 r키를 눌러주세요.");
+		c= getch();
+		if(c==114)
+			Choose(c);
+		
+		
+		
 	case 3:
 		system("cls");
-		printf("124");
-		break;
+		EOF;
 	default:
 		system("cls");
+		printf("\n");
 		printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
 	    printf("\n\n\n                                  1. 시작하기\n");
 	    printf("                                  2. 설명보기\n");
-		printf("                                  3. 끝내기\n  다시 입력해주세요.");
+		printf("                                  3. 끝내기\n");
 		scanf("%d", &choose);
 		Choose(choose);
 		
 
 	}
-	return choose;
+
+	
 	
 }
 int main(void)
@@ -63,6 +71,5 @@ int main(void)
 	
 	return 0;
 }
-		
 		
 	
