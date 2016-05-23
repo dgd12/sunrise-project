@@ -4,7 +4,7 @@ int Choose(int choose)
 {
 	char a;
 	int b=1;
-	int count=0;
+    int count=0;
 	char c;
 
 	switch(choose)
@@ -19,12 +19,16 @@ int Choose(int choose)
 			{
 			if(a==32)
 				count++;
-			system("cls");
+				system("cls");
 		}
 			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n %35d 원",count-1);
 			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n %50d. 상점", b);
 			printf("\n %50d. 저장", b+1);
 			printf("\n\n %50d. 끝내기", b+2);
+			
+
+			if(a==49)
+				Store();
 		}
 	case 2:
 		system("cls");
@@ -32,9 +36,6 @@ int Choose(int choose)
 		c= getch();
 		if(c==114)
 			Choose(c);
-		
-		
-		
 	case 3:
 		system("cls");
 		EOF;
@@ -48,12 +49,25 @@ int Choose(int choose)
 		scanf("%d", &choose);
 		Choose(choose);
 		
-
 	}
-
-	
-	
 }
+
+int Store(void)
+{
+	int m;
+	int n;
+	system("cls");
+	printf("상점에 오신걸 환영합니다. \n 보유하신 금액: \n" );
+	printf("\n\n 1. x2 \n\n");
+	printf("\n\n\n\n\n 0.되돌아가기 \n\n\n");
+	n = getch();
+	if(n==48)
+	   Choose(1);
+	
+
+			
+}
+
 int main(void)
 {
 	int choose;
