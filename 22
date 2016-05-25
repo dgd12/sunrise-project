@@ -1,24 +1,42 @@
 #include<stdio.h>
 #include<conio.h>
 #include<Windows.h>
+int save(int count)
+{
+	FILE * fp=fopen("money.txt", "wt");
+	if(fp==NULL) {
+		puts("저장하기 실패!");
+		return -1;
+	}
+	fprintf(fp, "%d", count);
+	fclose(fp);
+
+	system("cls");
+	puts("저장 완료!");
+	printf("계속하려면 스페이스바를 눌러주세요");
+}
+
+int read(int count)
+{
+	int z;
+	FILE *fp=fopen("money.txt", "rt");
+
+	fscanf(fp, "%d", count);
+	puts("불러오기 완료!");
+	fclose(fp);
+	printf("시작하려면 스페이스 바를 눌러주세요");
+	z = getch();
+	if(z==32)
+		Choose(1);
+}
+
+
 int Choose(int choose)
 {
 	char a;
 	int b=1;
     int count=0;
 	char c;
-	FILE *ifp, *ofp; 
-
-	ifp = fopen("money.txt", "rt"); 
-	if (ifp == NULL)
-		{
-			printf("money.txt파일을 찾지 못했습니다.\n"); 
-		}
-	ofp = fopen("money.txt", "wt"); 
-	if (ofp == NULL)
-	{
-	printf("money.txt파일을 만들지 못했습니다.\n");
-	}
 	
 
 	switch(choose)
@@ -27,7 +45,6 @@ int Choose(int choose)
 		system("cls");
 		
 		printf("                   스페이스바를 클릭을하여 돈을 벌어주세요 \n");
-		fprintf(ofp, "%d", count);
 	   
 	    for(a=0;a<=2000000000; a++)
 		{
@@ -38,8 +55,6 @@ int Choose(int choose)
 				system("cls");
 			}
 			
-			
-
 			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n %35d 원",count-1);
 			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n %50d. 상점", b);
 			printf("\n %50d. 저장", b+1);
@@ -49,11 +64,7 @@ int Choose(int choose)
 			if(a==49)
 				Store();
 			if(a==50)
-				fscanf(ifp, "%d", &count);
-
-			fclose(ifp);
-			fclose(ofp);
-			
+				save(count);
 		}
 	case 2:
 		system("cls");
@@ -62,6 +73,8 @@ int Choose(int choose)
 		if(c==114)
 			Choose(c);
 	case 3:
+
+	case 4:
 		system("cls");
 		EOF;
 	default:
@@ -79,10 +92,11 @@ int Choose(int choose)
 
 int Store(void)
 {
-	int m;
+	int count;
 	int n;
+
 	system("cls");
-	printf("상점에 오신걸 환영합니다. \n 보유하신 금액: \n" );
+	printf("상점에 오신걸 환영합니다. \n");
 	printf("\n\n 1. x2 \n\n");
 	printf("\n\n\n\n\n 0.되돌아가기 \n\n\n");
 	n = getch();
@@ -101,7 +115,8 @@ int main(void)
 	printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
 	printf("\n\n\n                                  1. 시작하기\n");
 	printf("                                  2. 설명보기\n");
-	printf("                                  3. 끝내기\n");
+	printf("                                  3. 불러오기\n");
+	printf("                                  4. 끝내기\n");
 
 	scanf("%d", &choose);
 	Choose(choose);
@@ -111,3 +126,5 @@ int main(void)
 	return 0;
 }
 		
+	
+	//main hamsu 에 pointer 를  집어넣자
