@@ -23,11 +23,8 @@ int read(int count)
 
 	fscanf(fp, "%d", count);
 	puts("불러오기 완료!");
+	printf("%d", count);
 	fclose(fp);
-	printf("시작하려면 스페이스 바를 눌러주세요");
-	z = getch();
-	if(z==32)
-		Choose(1);
 }
 
 
@@ -127,4 +124,4 @@ int main(void)
 }
 		
 	
-	//main hamsu 에 pointer 를  집어넣자
+	//main hamsu 에  count에 대한  pointer 를  집어넣고 choose 함수랑 save,read 함수 에 집어넣기
