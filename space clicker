@@ -1,0 +1,136 @@
+#include<stdio.h>
+#include<conio.h>
+#include<Windows.h>
+
+int count=0;
+
+int midsave(int count)
+{
+	int num=count;
+	int*pnum=&num;
+	*pnum=count;
+}
+
+
+int save(int count)
+{
+	FILE * fp=fopen("money.txt", "wt");
+	if(fp==NULL) {
+		puts("저장하기 실패!");
+		return -1;
+	}
+	fprintf(fp, "%d", count);
+	fclose(fp);
+
+	system("cls");
+	puts("저장 완료!");
+	printf("계속하려면 스페이스바를 눌러주세요");
+}
+
+int read(int count)
+{
+	int z;
+	FILE *fp=fopen("money.txt", "rt");
+
+	fscanf(fp, "%d", count);
+	puts("불러오기 완료!");
+	printf("%d", count);
+	fclose(fp);
+}
+
+
+int Choose(int choose)
+{
+	char a;
+	int b=1;
+	char c;
+	
+	switch(choose)
+	{
+	case 1:
+		system("cls");
+		printf("                   스페이스바를 클릭을하여 돈을 벌어주세요 \n");
+	   
+	    for(a=0;a<=2000000000; a++)
+		{
+			a = getch();
+			{
+			if(a==32)
+				count++;
+				system("cls");
+			}
+			
+			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n %35d 원", count);
+			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n %50d. 상점", b);
+			printf("\n %50d. 저장", b+1);
+			printf("\n\n %50d. 끝내기", b+2);
+			
+		
+			if(a==49)
+				
+				Store();
+				
+			if(a==50)
+				save(count);
+		}
+	case 2:
+		system("cls");
+		printf("\n          스페이스바를 눌러서 돈을 벌어 상점에서 아이템을 구입해 돈을 모아보세요.\n\n                    돌아가려면 r키를 눌러주세요.");
+		c= getch();
+		if(c==114)
+			Choose(c);
+	case 3:
+
+	case 4:
+		system("cls");
+		EOF;
+	default:
+		system("cls");
+		printf("\n");
+		printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
+	    printf("\n\n\n                                  1. 시작하기\n");
+	    printf("                                  2. 설명보기\n");
+		printf("                                  3. 끝내기\n");
+		scanf("%d", &choose);
+		Choose(choose);
+		
+	}
+}
+
+int Store(void)
+{
+	int count;
+	int n;
+
+	system("cls");
+	printf("상점에 오신걸 환영합니다. \n");
+	printf("\n\n 1. x2 \n\n");
+	printf("\n\n\n\n\n 0.되돌아가기 \n\n\n");
+	n = getch();
+	if(n==48)
+		Choose(1);
+		
+
+	
+
+			
+}
+
+int main(void)
+{
+	int choose;
+	printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
+	printf("\n\n\n                                  1. 시작하기\n");
+	printf("                                  2. 설명보기\n");
+	printf("                                  3. 불러오기\n");
+	printf("                                  4. 끝내기\n");
+
+	scanf("%d", &choose);
+	Choose(choose);
+
+	
+
+	
+	
+	return 0;
+}
