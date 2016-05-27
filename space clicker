@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<conio.h>
 #include<Windows.h>
 
@@ -20,6 +21,7 @@ int save(int count)
 		return -1;
 	}
 	fprintf(fp, "%d", count);
+	count-=1;
 	fclose(fp);
 
 	system("cls");
@@ -27,15 +29,20 @@ int save(int count)
 	printf("계속하려면 스페이스바를 눌러주세요");
 }
 
-int read(int count)
+int read()
 {
-	int z;
-	FILE *fp=fopen("money.txt", "rt");
-
-	fscanf(fp, "%d", count);
-	puts("불러오기 완료!");
-	printf("%d", count);
+	FILE * fp=fopen("money.txt", "r");
+	if(fp==NULL) {
+		puts("불러오기 실패!");
+		return -1;
+	}
+	else
+	{
+		fscanf(fp,"%d", &count);
+}
 	fclose(fp);
+	Choose(1);
+
 }
 
 
@@ -50,6 +57,7 @@ int Choose(int choose)
 	case 1:
 		system("cls");
 		printf("                   스페이스바를 클릭을하여 돈을 벌어주세요 \n");
+		
 	   
 	    for(a=0;a<=2000000000; a++)
 		{
@@ -72,6 +80,11 @@ int Choose(int choose)
 				
 			if(a==50)
 				save(count);
+			if(a==51)
+			{
+				system("cls");
+				return 0;
+			}
 		}
 	case 2:
 		system("cls");
@@ -80,6 +93,7 @@ int Choose(int choose)
 		if(c==114)
 			Choose(c);
 	case 3:
+		read();
 
 	case 4:
 		system("cls");
