@@ -4,6 +4,9 @@
 #include<Windows.h>
 
 int count=0;
+int l=100;
+int n=2;
+
 
 int midsave(int count)
 {
@@ -28,6 +31,49 @@ int save(int count)
 	puts("저장 완료!");
 	printf("계속하려면 스페이스바를 눌러주세요");
 }
+int save_2(int n,int l)
+{
+	FILE * fp2=fopen("store.txt", "wt");
+	if(fp2==NULL) {
+		puts("저장하기 실패!");
+		return -1;
+	}
+	fprintf(fp2, "%d, %d", n, l);
+	fclose(fp2);
+}
+
+/*int save_3(int A)
+{
+	FILE * fp3 = fopen("x.txt", "wt");
+	if(fp3==NULL) {
+		puts("저장하기 실패!");
+		return -1;
+	}
+	fprintf(fp3, "%d", A);
+	fclose(fp3);
+}
+
+int read_3()
+{
+	FILE * fp3 = fopen("x.txt", "r");
+	if(fp3==NULL) {
+		puts("불러오기 실패!");
+		return -1;
+	}
+	fscanf(fp3, "%d", &A);
+	fclose(fp3);
+}*/
+
+int read_2()
+{
+	FILE * fp2=fopen("store.txt", "r");
+	if(fp2==NULL) {
+		puts("불러오기 실패!");
+		return -1;
+	}
+	fscanf(fp2, "%d, %d", &n, &l);
+	fclose(fp2);
+}
 
 int read()
 {
@@ -41,8 +87,6 @@ int read()
 		fscanf(fp,"%d", &count);
 }
 	fclose(fp);
-	Choose(1);
-
 }
 
 
@@ -55,6 +99,7 @@ int Choose(int choose)
 	switch(choose)
 	{
 	case 1:
+		/*read_3();*/
 		system("cls");
 		printf("                   스페이스바를 클릭을하여 돈을 벌어주세요 \n");
 		
@@ -64,7 +109,7 @@ int Choose(int choose)
 			a = getch();
 			{
 			if(a==32)
-				count++;
+				count ++;
 				system("cls");
 			}
 			
@@ -94,6 +139,7 @@ int Choose(int choose)
 			Choose(c);
 	case 3:
 		read();
+		Choose(1);
 
 	case 4:
 		system("cls");
@@ -114,15 +160,30 @@ int Choose(int choose)
 
 int Store(void)
 {
-	int n;
+	int m;
+	read();
+	read_2();
 
 	system("cls");
-	printf("상점에 오신걸 환영합니다. \n");
-	printf("\n\n 1. x2 \n\n");
+	printf("상점에 오신걸 환영합니다. \n보유 현금 : %d원 ", count);
+	printf("\n\n 1. x%d \n 가격 : %d원\n", n, l);
 	printf("\n\n\n\n\n 0.되돌아가기 \n\n\n");
-	n = getch();
-	if(n==48)
+	m=getch();
+	if(m==49)
+	{
+		if(count>=l)
+		{
+			printf("구입완료");
+			count = count-l;
+			/*save(count);*/
+			save_2(n*2,l*70);
+		}
+	}
+	if(m==48)
+	{
+		
 		Choose(1);
+	}
 		
 
 	
@@ -133,6 +194,8 @@ int Store(void)
 int main(void)
 {
 	int choose;
+	save_2(2,100);
+	/*save_3(1);*/
 	printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
 	printf("\n\n\n                                  1. 시작하기\n");
 	printf("                                  2. 설명보기\n");
@@ -141,10 +204,5 @@ int main(void)
 
 	scanf("%d", &choose);
 	Choose(choose);
-
-	
-
-	
-	
 	return 0;
 }
