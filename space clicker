@@ -6,6 +6,7 @@
 int count=0;
 int l=100;
 int n=2;
+int A=1;
 
 
 int midsave(int count)
@@ -42,7 +43,7 @@ int save_2(int n,int l)
 	fclose(fp2);
 }
 
-/*int save_3(int A)
+int save_3(int A)
 {
 	FILE * fp3 = fopen("x.txt", "wt");
 	if(fp3==NULL) {
@@ -62,7 +63,7 @@ int read_3()
 	}
 	fscanf(fp3, "%d", &A);
 	fclose(fp3);
-}*/
+}
 
 int read_2()
 {
@@ -99,7 +100,7 @@ int Choose(int choose)
 	switch(choose)
 	{
 	case 1:
-		/*read_3();*/
+		read_3();
 		system("cls");
 		printf("                   스페이스바를 클릭을하여 돈을 벌어주세요 \n");
 		
@@ -109,7 +110,7 @@ int Choose(int choose)
 			a = getch();
 			{
 			if(a==32)
-				count ++;
+				count = count+A;
 				system("cls");
 			}
 			
@@ -120,8 +121,10 @@ int Choose(int choose)
 			
 		
 			if(a==49)
-				
+			{
+				save(count);
 				Store();
+			}
 				
 			if(a==50)
 				save(count);
@@ -163,11 +166,12 @@ int Store(void)
 	int m;
 	read();
 	read_2();
+	read_3();
 
 	system("cls");
 	printf("상점에 오신걸 환영합니다. \n보유 현금 : %d원 ", count);
 	printf("\n\n 1. x%d \n 가격 : %d원\n", n, l);
-	printf("\n\n\n\n\n 0.되돌아가기 \n\n\n");
+	printf("\n\n\n\n\n 0.되돌아가기 \n\n\n ->");
 	m=getch();
 	if(m==49)
 	{
@@ -175,14 +179,20 @@ int Store(void)
 		{
 			printf("구입완료");
 			count = count-l;
-			/*save(count);*/
-			save_2(n*2,l*70);
+			save(count);
+			save_2(n*2,l*4);
+			save_3(A*2);
+			Store();
 		}
+		else
+			
+			Store();
 	}
 	if(m==48)
 	{
-		
+		save(count);
 		Choose(1);
+		read();
 	}
 		
 
@@ -195,7 +205,7 @@ int main(void)
 {
 	int choose;
 	save_2(2,100);
-	/*save_3(1);*/
+	save_3(1);
 	printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
 	printf("\n\n\n                                  1. 시작하기\n");
 	printf("                                  2. 설명보기\n");
