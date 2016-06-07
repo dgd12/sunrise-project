@@ -2,11 +2,13 @@
 #include<stdlib.h>
 #include<conio.h>
 #include<Windows.h>
+#include<time.h>
 
 int count=0;
-int l=100;
-int n=2;
+int l;
+int n;
 int A=1;
+int p;
 
 
 int midsave(int count)
@@ -16,7 +18,13 @@ int midsave(int count)
 	*pnum=count;
 }
 
-
+/*int Lotto(void)
+{
+	int p=0;
+	srand((unsigned int) time(NULL));
+	p = rand() % 10001;
+	save_4(p);
+}*/
 int save(int count)
 {
 	FILE * fp=fopen("money.txt", "wt");
@@ -52,6 +60,26 @@ int save_3(int A)
 	}
 	fprintf(fp3, "%d", A);
 	fclose(fp3);
+}
+int save_4(int p)
+{
+	FILE * fp4 = fopen("lotto.txt", "wt");
+	if(fp4==NULL) {
+		puts("저장하기 실패!");
+		return -1;
+	}
+	fprintf(fp4, "%d", p);
+	fclose(fp4);
+}
+int read_4()
+{
+	FILE * fp4 = fopen("lotto.txt", "r");
+	if(fp4==NULL) {
+		puts("불러오기 실패!");
+		return -1;
+	}
+	fscanf(fp4, "%d", &p);
+	fclose(fp4);
 }
 
 int read_3()
@@ -127,10 +155,16 @@ int Choose(int choose)
 			}
 				
 			if(a==50)
+			{
 				save(count);
+				save_2(n,l);
+				save_3(A);
+				save_4;
+			}
+	
+
 			if(a==51)
 			{
-				system("cls");
 				return 0;
 			}
 		}
@@ -142,10 +176,11 @@ int Choose(int choose)
 			Choose(c);
 	case 3:
 		read();
+		read_2();
+		read_3();
 		Choose(1);
 
 	case 4:
-		system("cls");
 		return 0;
 	default:
 		system("cls");
@@ -171,6 +206,7 @@ int Store(void)
 	system("cls");
 	printf("상점에 오신걸 환영합니다. \n보유 현금 : %d원 ", count);
 	printf("\n\n 1. x%d \n 가격 : %d원\n", n, l);
+	printf("\n 2. 초급복권 \n 가격 : %d원 \n", 5000);
 	printf("\n\n\n\n\n 0.되돌아가기 \n\n\n ->");
 	m=getch();
 	if(m==49)
@@ -180,14 +216,28 @@ int Store(void)
 			printf("구입완료");
 			count = count-l;
 			save(count);
-			save_2(n*2,l*4);
+			save_2(n*2,l*2);
 			save_3(A*2);
 			Store();
 		}
 		else
 			
 			Store();
-	}
+	}/*
+	if(m==50)
+	{
+		Lotto();
+		read_4();
+		if(count>=5000)
+		{
+			printf("구입완료");
+			count = count-5000+p;
+			save(count);
+			Store();
+		}
+		else
+			Store();
+	}*/
 	if(m==48)
 	{
 		save(count);
@@ -200,12 +250,16 @@ int Store(void)
 
 			
 }
+void zr(void)
+{
+	save_2(2,100);
+	save_3(1);
+}
+	
 
 int main(void)
 {
 	int choose;
-	save_2(2,100);
-	save_3(1);
 	printf("\n\n\n\n\n\n\n\n\n                         │     Space    │ Clicker\n");
 	printf("\n\n\n                                  1. 시작하기\n");
 	printf("                                  2. 설명보기\n");
@@ -213,6 +267,10 @@ int main(void)
 	printf("                                  4. 끝내기\n");
 
 	scanf("%d", &choose);
+	if(choose==1)
+		zr();
 	Choose(choose);
+	
+	
 	return 0;
 }
